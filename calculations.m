@@ -34,12 +34,13 @@ dNdE(Emu,theta,pat) = Smu*N0/(1-ZNN)*(Apimu/(1+Bpimu*cos(theta)*Emu/epsmu) + 0.6
 pressure = linspace(1,103000);
 EmuDist = 10.^linspace(0,4);
 % Flux = subs(Imu(pat, 0), pat, pressure);
-dNdEPlot = subs(dNdE,{Emu,pat},{EmuDist,pressure}).*EmuDist.*EmuDist.*EmuDist;
+dNdEPlotSub1(theta,pat) = dNdE(EmuDist,theta,pat).*EmuDist.*EmuDist.*EmuDist;
+dNdEPlotSub2(theta) = dNdEPlotSub1(theta,pressure);
 
 %% CREATE GRAPHS
 % figure;
 % plot(pressure, Flux);
 figure;
-surf(EmuDist, pressure, dNdE(EmuDist, 0, pressure).*EmuDist.*EmuDist.*EmuDist);
+surf(EmuDist, pressure, dNdEPlotSub2(0));
 set(gca,'XScale','log')
 set(gca,'ZScale','log')
