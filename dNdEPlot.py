@@ -3,7 +3,7 @@ import scipy.special as sp
 import numpy as np
 from scipy.integrate import  quad
 import matplotlib.pyplot as plt
-plt.style.use("science")
+#plt.style.use("science")
 
 g = 9.81  # m/s²
 # pat = 98650; % N/m²
@@ -60,15 +60,19 @@ Z = (dNdE(Emu_mesh, 0, pressure_mesh))# ).reshape(200, 10)
 # Z = Z * EmuDist.reshape(200,1) ** 3
 
 
-# ax.plot(np.log(EmuDist), np.full(EmuDist.size, 98650), np.log(EmuDist**3 * dNdE(EmuDist, 0, 98650)))
+ax.plot(EmuDist, EmuDist**3 * dNdE(EmuDist, 0, 98650))
 # ax.plot_surface( np.log(Emu_mesh), pressure_mesh, np.log(Z))
 DN = [quad(lambda emu:dNdE(emu, 0, p), 1, 10**4)[0] for p in pressure]
 #%%
-ax.plot(pressure, DN)
+#ax.plot(pressure, DN)
 
 
+ax.set_xscale("log")
 ax.set_yscale("log")
-ax.set_yscale("log")
+plt.title("Calculated muon flux")
+plt.xlabel("$E_\mu (GeV)$")
+plt.ylabel("$dN_\mu/dE_\mu (cm^{–2}sr^{–1}s^{–1}GeV^{-1})$")
+plt.grid()
 plt.show()
 
 

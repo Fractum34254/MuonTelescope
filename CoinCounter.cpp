@@ -47,7 +47,7 @@ int main(int argc, char* argv[]){
 	}
 	if(argc != 3)
 	{
-		std::cout << "Use: ./test <maxTime> <boxes>" << std::endl;
+		std::cout << "Use: ./CoinCounter <maxTime> <boxes>" << std::endl;
 		return 0;
 	}
 	
